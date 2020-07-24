@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="" dir="ltr">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>JavaScript基础知识归纳 &middot; </title>
+  <meta name="description" content="js中有5种数据类型:Undefined、Null、Boolean、Number和String。Undefined类型只有一个值,即undefined,使用var声明变量,但是未对初始化的,这个变量就是..." />
+  <meta property="og:locale" content="en">
+<meta property="og:type" content="article">
+<meta property="og:title" content="咋瓦鲁多">
+<meta property="og:description" content="aether Hugo theme for blogs">
+<meta property="og:url" content="https://asamiogawa.github.io/blog/post/javascript/js-basic/">
+<meta property="og:site_name" content="咋瓦鲁多">
+<meta property="og:image" content="https://asamiogawa.github.io/blog/img/ogimage.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="咋瓦鲁多">
+<meta name="twitter:description" content="aether Hugo theme for blogs">
+<meta name="twitter:site" content="https://asamiogawa.github.io/blog/">
+<meta name="twitter:creator" content="Joe Hutchinson">
+<meta name="twitter:image" content="https://asamiogawa.github.io/blog/img/ogimage.jpg">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  
+  
+  
+  
+  <link href="https://asamiogawa.github.io/blog/css/concated.min.css" rel="stylesheet">
+  
+  <style>
+    body {
+      background: #ecedef url("https://asamiogawa.github.io/blog/img/ignasi_pattern_s.png") repeat;
+    }
+  </style>
+</head>
+
+  <body class="single-body">
+    <nav class="nav-bar side-padding">
+  <h1 class="nav-header"><a href="https://asamiogawa.github.io/blog/" class="nav-text">咋瓦鲁多</a></h1>
+  <div class="hamburger-menu">
+    <button onclick="hamburgerMenuPressed.call(this)" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Menu">
+      <span></span>
+      <span></span>
+    </button>
+    <ul id="menu" class="hamburger-menu-overlay">
+      <li><a href="https://asamiogawa.github.io/blog/" class="hamburger-menu-overlay-link">Home</a></li>
+      
+      <li><a href="https://asamiogawa.github.io/blog/categories/about/" class="hamburger-menu-overlay-link">about</a></li>
+      
+      <li><a href="https://asamiogawa.github.io/blog/categories/html/" class="hamburger-menu-overlay-link">HTML</a></li>
+      
+      <li><a href="https://asamiogawa.github.io/blog/categories/javascript/" class="hamburger-menu-overlay-link">javascript</a></li>
+      
+      
+    </ul>
+  </div>
+</nav>
+
+    <main class="content side-text-padding">
+      <article class="post dropcase">
+        <header class="post-header">
+          <h1 class="post-title">JavaScript基础知识归纳</h1>
+          <p class="post-date">Posted <time datetime="2020-07-24">Jul 24, 2020</time></p>
+        </header>
+        
+        <h2>Contents</h2>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-数据类型">1. 数据类型</a>
+      <ul>
+        <li><a href="#11-数据类型的分类">1.1 数据类型的分类</a></li>
+        <li><a href="#12-数据类型的判断">1.2 数据类型的判断</a></li>
+        <li><a href="#13-相关问题">1.3 相关问题</a></li>
+        <li><a href="#14-答案">1.4 答案</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-函数">2. 函数</a>
+      <ul>
+        <li><a href="#21-函数的定义">2.1 函数的定义</a></li>
+        <li><a href="#22-函数的执行方式">2.2 函数的执行方式</a></li>
+        <li><a href="#23-回调函数">2.3 回调函数</a></li>
+        <li><a href="#24-iife">2.4 IIFE</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-作用域与作用域链">3. 作用域与作用域链</a>
+      <ul>
+        <li><a href="#31-作用域的概念">3.1 作用域的概念</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-原型">4. 原型</a>
+      <ul>
+        <li><a href="#41-总结">4.1 总结</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-闭包">5. 闭包</a>
+      <ul>
+        <li><a href="#51-闭包的缺点">5.1 闭包的缺点</a></li>
+        <li><a href="#52-内存溢出与内存泄漏">5.2 内存溢出与内存泄漏</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        <h2 id="1-数据类型">1. 数据类型</h2>
+<h3 id="11-数据类型的分类">1.1 数据类型的分类</h3>
+<ul>
+<li>基本(值)类型
+<ul>
+<li>string: 任意字符串</li>
+<li>number: 任意数字</li>
+<li>boolean: true和false</li>
+<li>null: null</li>
+<li>undefined: undefined</li>
+</ul>
+</li>
+<li>对象(引用)类型
+<ul>
+<li>object</li>
+<li>function: object中的一种特别类型, 特点是能够调用执行代码</li>
+<li>array: object中的一种特别类型, 特点是值有小标(索引)</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-数据类型的判断">1.2 数据类型的判断</h3>
+<ul>
+<li>
+<p>判断方法:  <code>typeof </code>、<code>instanceof</code>、<code>===</code></p>
+</li>
+<li>
+<p><code>typeof</code> :   返回字符串, 如</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JavaScript" data-lang="JavaScript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span>;
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">a</span>);  <span style="color:#75715e">// &#39;undefined&#39;
+</span></code></pre></div></li>
+<li>
+<p><code>instanceof</code> :  返回boolean, 如</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JavaScript" data-lang="JavaScript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> {
+    <span style="color:#a6e22e">a</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;炒鸡蛋&#39;</span>,
+    <span style="color:#a6e22e">b</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">666</span>,
+    <span style="color:#a6e22e">c</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> () { },
+    <span style="color:#a6e22e">d</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#39;刘德华&#39;</span>, <span style="color:#66d9ef">null</span>, <span style="color:#ae81ff">23</span>]
+}
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">a</span> <span style="color:#66d9ef">instanceof</span> Object);	<span style="color:#75715e">// true
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">a</span> <span style="color:#66d9ef">instanceof</span> Array);	<span style="color:#75715e">// false
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">d</span> <span style="color:#66d9ef">instanceof</span> Array, <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">d</span> <span style="color:#66d9ef">instanceof</span> Object); <span style="color:#75715e">// true, true(这里也说明了Array为Object, 只不过是一种特别的Object)
+</span></code></pre></div><p><code>a instanceof Object</code> 意思: a 是否为 Object 的实例</p>
+<p><em><strong>注意: A instanceof B, A找原型链(即__proto__指向的对象) ; B找显式原型属性对象(即为prototype属性对象)</strong></em></p>
+</li>
+</ul>
+<h3 id="13-相关问题">1.3 相关问题</h3>
+<p>​	① undefined与null的区别</p>
+<p>​	② 什么时候赋值null</p>
+<p>​	③ 如何严格区分变量类型和数据类型</p>
+<p>​	答案:</p>
+<p>​	① undefined代表已定义变量, 但未赋值;</p>
+<p>​	     null代表已定义变量, 并已赋值</p>
+<p>​	② 初始化变量的值, 代表这个变量是对象类型; (这也是因为 <code>typeof null</code> 时返回&rsquo;object&rsquo;的原因)</p>
+<p>​	     变量结束前, 通过赋值变量为null, 让存储在堆的对象成为垃圾, 让浏览器里的垃圾回收器回收垃圾对象</p>
+<p>​	③ 因为JavaScript为弱类型语言, 变量是通过&quot;值&quot;来确定变量的类型; 当变量赋值为object类型时(如 <code>var a = {}</code> 	     ), 变量a存储的是对象的引用(即堆的内存地址, 类似 <code>0x3231</code> ), 可以理解为以下要点:</p>
+<p>​	数据类型: 基本类型、对象类型</p>
+<p>​	变量类型: 基本类型、引用类型</p>
+<h3 id="14-答案">1.4 答案</h3>
+<p>​	① undefined代表已定义变量, 但未赋值;null代表已定义变量, 并已赋值</p>
+<p>​	② 初始化变量的值, 代表这个变量是对象类型 (这也是因为 <code>typeof null</code> 时返回&rsquo;object&rsquo;的原因)；变量结束前, 通过赋值变量为null, 让存储在堆的对象成为垃圾, 让浏览器里的垃圾回收器回收垃圾对象</p>
+<p>​	③ 因为JavaScript为弱类型语言, 变量是通过&quot;值&quot;来确定变量的类型; 当变量赋值为object类型时(如 <code>var a = {}</code> 	     ), 变量a存储的是对象的引用(即堆的内存地址, 类似 <code>0x3231</code> ), 可以理解为以下要点:</p>
+<ul>
+<li>
+<p>数据类型: 基本类型、对象类型</p>
+</li>
+<li>
+<p>变量类型: 基本类型、引用类型</p>
+</li>
+</ul>
+<h2 id="2-函数">2. 函数</h2>
+<h3 id="21-函数的定义">2.1 函数的定义</h3>
+<p>​	函数是一个存储n条代码语句的封装体</p>
+<h3 id="22-函数的执行方式">2.2 函数的执行方式</h3>
+<ul>
+<li>
+<p>直接调用, 如 <code>test()</code></p>
+</li>
+<li>
+<p>通过对象进行调用, 如 <code>obj.test()</code></p>
+</li>
+<li>
+<p>通过new进行调用, 如 <code>new test()</code></p>
+</li>
+<li>
+<p>通过 <code>call/apply</code> 的方式进行调用, 如 <code>test.call(obj)</code></p>
+<p><em><strong>注意: JavaScript的强大之处在于: 一个方法可以由任意的对象进行调用, 这是其他语言所没有的</strong></em></p>
+</li>
+</ul>
+<h3 id="23-回调函数">2.3 回调函数</h3>
+<h3 id="24-iife">2.4 IIFE</h3>
+<ul>
+<li><strong>概念</strong></li>
+</ul>
+<p>​	IIFE是Immediately Invoked Function Expression的简写, 意思为立即调用函数表达式, 如以下例子:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JavaScript" data-lang="JavaScript">(<span style="color:#66d9ef">function</span> () {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">123</span>
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">a</span>);  <span style="color:#75715e">// 123
+</span><span style="color:#75715e"></span>})()
+</code></pre></div><p>​	所以IIFE也可以理解为匿名函数自调用</p>
+<ul>
+<li><strong>作用</strong>: 隐藏代码(相对于全局来说), 防止变量污染, 做模块化</li>
+</ul>
+<h2 id="3-作用域与作用域链">3. 作用域与作用域链</h2>
+<h3 id="31-作用域的概念">3.1 作用域的概念</h3>
+<ol>
+<li>
+<p>什么是作用域？</p>
+<p>作用域就是代码区域, 但这个代码区域分为全局作用域和函数作用域</p>
+</li>
+</ol>
+<h2 id="4-原型">4. 原型</h2>
+<h3 id="41-总结">4.1 总结</h3>
+<pre><code>1. 所有函数都是Function函数的实例对象
+2. 除了Object函数的原型, 所有的函数的原型都是Object函数的实例对象
+3. 原型链的尽头是Object函数原型的 `__proto__` ，值为null
+</code></pre>
+<h2 id="5-闭包">5. 闭包</h2>
+<h3 id="51-闭包的缺点">5.1 闭包的缺点</h3>
+<p>​	造成内存泄漏，从而导致内存溢出</p>
+<h3 id="52-内存溢出与内存泄漏">5.2 内存溢出与内存泄漏</h3>
+<p>​	<em><strong>1. 什么是内存溢出？</strong></em></p>
+<p>​		* 内存溢出是程序运行的一种错误</p>
+<p>​		* 当程序运行所需的内存超出了当前计算机所剩余的内存, 就会产生内存溢出</p>
+<p>​	<em><strong>2. 什么是内存泄漏？</strong></em></p>
+<p>​		* 内存泄漏是占用的内存没有及时释放</p>
+<p>​	<em><strong>3. 常见的内存泄漏</strong></em></p>
+<p>​		* 意外的全局变量, 比如在函数内部没有使用var 或 let 申明变量的关键字, 直接赋值从而导致全局变量的产生</p>
+<p>​		* 未及时清除定时器或回调函数</p>
+<p>​		* 闭包</p>
+
+      </article>
+      
+    </main>
+    <nav class="end-nav side-padding">
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://asamiogawa.github.io/blog/post/html/h5-new-features/" class="card blog-card" rel="bookmark" >
+  
+  <article class="card-body">
+    <h2 class="card-title">HTML5新特性</h2>
+    <p class="card-text">今天，大多数视频是通过插件（比如 Flash）来显示的。然而，并非所有浏览器都拥有同样的插件。 HTML5 规定了一种通过 video 元素来包含视频的标准方法...</p>
+    <div class="card-subtext muted-text">
+      <p>Posted <time datetime="2020-07-24 724:00">Jul 24, 2020</time></p>
+      <p>#HTML </p>
+    </div>
+  </article>
+</a>
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://asamiogawa.github.io/blog/" class="card home-card" style="background-image: url( https://asamiogawa.github.io/blog/img/grey-cloud.jpg )" rel="bookmark" >
+  Home
+</a>
+    </nav>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+  
+  <script src="https://asamiogawa.github.io/blog/js/core.min.js"></script>
+
+  </body>
+</html>
