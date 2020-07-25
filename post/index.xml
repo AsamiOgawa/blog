@@ -1,33 +1,33 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts - </title>
-    <link>https://valentina__nappi.gitee.io/blog/post/</link>
+    <link>https://asamiogawa.github.io/blog/post/</link>
     <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sat, 25 Jul 2020 10:38:26 +0800</lastBuildDate>
     
-        <atom:link href="https://valentina__nappi.gitee.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://asamiogawa.github.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>JavaScript的三种原型继承方式</title>
-      <link>https://valentina__nappi.gitee.io/blog/post/javascript/js-proto-from/</link>
+      <link>https://asamiogawa.github.io/blog/post/javascript/js-proto-from/</link>
       <pubDate>Sat, 25 Jul 2020 10:38:26 +0800</pubDate>
       
-      <guid>https://valentina__nappi.gitee.io/blog/post/javascript/js-proto-from/</guid>
+      <guid>https://asamiogawa.github.io/blog/post/javascript/js-proto-from/</guid>
       <description>本文不会对于JS中的继承机制进行深入研究，只聊js中基于原型实现继承的方式，首先我们来看一段demo...</description>
     </item><item>
       <title>JavaScript之数据类型转换</title>
-      <link>https://valentina__nappi.gitee.io/blog/post/javascript/data-type-conversion/</link>
+      <link>https://asamiogawa.github.io/blog/post/javascript/data-type-conversion/</link>
       <pubDate>Fri, 24 Jul 2020 16:31:17 +0800</pubDate>
       
-      <guid>https://valentina__nappi.gitee.io/blog/post/javascript/data-type-conversion/</guid>
+      <guid>https://asamiogawa.github.io/blog/post/javascript/data-type-conversion/</guid>
       <description>数据类型转换 JavaScript 中, 变量可以赋予任何类型的值。但是运算符对数据类型是有要求的, 如果运算符发现, 运算子的类型与预期不符, 就会自动转换类...</description>
     </item><item>
       <title>JavaScript基础知识归纳</title>
-      <link>https://valentina__nappi.gitee.io/blog/post/javascript/js-basic/</link>
+      <link>https://asamiogawa.github.io/blog/post/javascript/js-basic/</link>
       <pubDate>Fri, 24 Jul 2020 12:52:11 +0800</pubDate>
       
-      <guid>https://valentina__nappi.gitee.io/blog/post/javascript/js-basic/</guid>
+      <guid>https://asamiogawa.github.io/blog/post/javascript/js-basic/</guid>
       <description>js中有5种数据类型:Undefined、Null、Boolean、Number和String。Undefined类型只有一个值,即undefined,使用var声明变量,但是未对初始化的,这个变量就是...</description>
     </item>
   </channel>

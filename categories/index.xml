@@ -1,33 +1,33 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories - </title>
-    <link>https://valentina__nappi.gitee.io/blog/categories/</link>
+    <link>https://asamiogawa.github.io/blog/categories/</link>
     <description>Recent content in Categories on </description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Sat, 25 Jul 2020 10:38:26 +0800</lastBuildDate>
     
-        <atom:link href="https://valentina__nappi.gitee.io/blog/categories/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://asamiogawa.github.io/blog/categories/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>javascript</title>
-      <link>https://valentina__nappi.gitee.io/blog/categories/javascript/</link>
+      <link>https://asamiogawa.github.io/blog/categories/javascript/</link>
       <pubDate>Sat, 25 Jul 2020 10:38:26 +0800</pubDate>
       
-      <guid>https://valentina__nappi.gitee.io/blog/categories/javascript/</guid>
+      <guid>https://asamiogawa.github.io/blog/categories/javascript/</guid>
       <description></description>
     </item><item>
       <title>HTML</title>
-      <link>https://valentina__nappi.gitee.io/blog/categories/html/</link>
+      <link>https://asamiogawa.github.io/blog/categories/html/</link>
       <pubDate>Fri, 24 Jul 2020 11:54:58 +0800</pubDate>
       
-      <guid>https://valentina__nappi.gitee.io/blog/categories/html/</guid>
+      <guid>https://asamiogawa.github.io/blog/categories/html/</guid>
       <description></description>
     </item><item>
       <title>about</title>
-      <link>https://valentina__nappi.gitee.io/blog/categories/about/</link>
+      <link>https://asamiogawa.github.io/blog/categories/about/</link>
       <pubDate>Fri, 24 Jul 2020 11:36:07 +0800</pubDate>
       
-      <guid>https://valentina__nappi.gitee.io/blog/categories/about/</guid>
+      <guid>https://asamiogawa.github.io/blog/categories/about/</guid>
       <description></description>
     </item>
   </channel>
