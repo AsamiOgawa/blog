@@ -65,58 +65,8 @@
         </header>
         
         <h2>Contents</h2>
-          <nav id="TableOfContents">
-  <ul>
-    <li><a href="#数据类型的转换">数据类型的转换</a>
-      <ul>
-        <li><a href="#隐式转换">隐式转换</a></li>
-        <li><a href="#强制转换">强制转换</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-        <picture>
-    
-    
-    
-        <source srcset="https://asamiogawa.github.io/blog/post/javascript/data-type-conversion/_hua1641ad431df59a323c61607cf92e9a2_498161_5b1c77670177794152fbc648a55d39c6.jpg">
-        <img src="https://asamiogawa.github.io/blog/post/javascript/data-type-conversion/_hua1641ad431df59a323c61607cf92e9a2_498161_5b1c77670177794152fbc648a55d39c6.jpg" >
-    
-</picture>
-<h1 id="数据类型">数据类型</h1>
-<h2 id="数据类型的转换">数据类型的转换</h2>
-<h3 id="隐式转换">隐式转换</h3>
-<p><strong>问题一：自增（++）是否会发生隐式转换？</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JavaScript" data-lang="JavaScript"><span style="color:#75715e">/* 前提先补充以下知识 */</span>
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span>;
-<span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
-<span style="color:#a6e22e">a</span><span style="color:#f92672">++</span>; <span style="color:#75715e">// a = a + 1, 结果为 2
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">a</span><span style="color:#f92672">--</span>; <span style="color:#75715e">// a = a - 1, 结果为 0
-</span><span style="color:#75715e"></span>
-<span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1&#39;</span>;
-<span style="color:#a6e22e">a</span><span style="color:#f92672">++</span>; <span style="color:#75715e">// 结果为 2, 原因是变量a的值&#39;1&#39;发生了隐式转换，由&#39;1&#39;转为1
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">a</span>; <span style="color:#75715e">// 结果为 number
-</span></code></pre></div><p><em><strong>结论 1：变量发生自增时，字符串也会隐式转换为数字。</strong></em></p>
-<p><strong>问题二：赋值运算符 += 是否也会发生隐式转换？</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JavaScript" data-lang="JavaScript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span>;
-<span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>;
-<span style="color:#a6e22e">a</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">2</span> <span style="color:#75715e">// a = a + 2, 结果为 3
-</span><span style="color:#75715e"></span>
-<span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;2&#39;</span>
-<span style="color:#a6e22e">a</span> <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span> <span style="color:#75715e">// a = a + 2, 结果为 &#39;21&#39;
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">a</span> <span style="color:#75715e">// 结果为 string
-</span></code></pre></div><p><em><strong>结论 2：赋值运算符  += 不会发生隐式转换。</strong></em></p>
-<h3 id="强制转换">强制转换</h3>
-<ol>
-<li>
-<p><em><strong>parseInt</strong></em></p>
-<p>计算公式：数字 * 进制数 ^ （第几个位数-1）</p>
-<p>例子：</p>
-</li>
-</ol>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JavaScript" data-lang="JavaScript">   parseInt(<span style="color:#e6db74">&#39;123&#39;</span>, <span style="color:#ae81ff">4</span>) <span style="color:#75715e">// 1*4^2 + 2*4^1 + 3*4^0 = 27
-</span><span style="color:#75715e"></span>   parseInt(<span style="color:#e6db74">&#39;cf&#39;</span>, <span style="color:#ae81ff">16</span>) <span style="color:#75715e">// 12*16^1 + 15*16^0 = 207
-</span></code></pre></div>
+          
+        
       </article>
       
     </main>
