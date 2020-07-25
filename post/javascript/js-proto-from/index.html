@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="" dir="ltr">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>JavaScript的三种原型继承方式 &middot; </title>
+  <meta name="description" content="本文不会对于JS中的继承机制进行深入研究，只聊js中基于原型实现继承的方式，首先我们来看一段demo..." />
+  <meta property="og:locale" content="en">
+<meta property="og:type" content="article">
+<meta property="og:title" content="咋瓦鲁多">
+<meta property="og:description" content="aether Hugo theme for blogs">
+<meta property="og:url" content="https://valentina__nappi.gitee.io/blog/post/javascript/js-proto-from/">
+<meta property="og:site_name" content="咋瓦鲁多">
+<meta property="og:image" content="https://valentina__nappi.gitee.io/blog/img/ogimage.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="咋瓦鲁多">
+<meta name="twitter:description" content="aether Hugo theme for blogs">
+<meta name="twitter:site" content="https://valentina__nappi.gitee.io/blog">
+<meta name="twitter:creator" content="Joe Hutchinson">
+<meta name="twitter:image" content="https://valentina__nappi.gitee.io/blog/img/ogimage.jpg">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  
+  
+  
+  
+  <link href="https://valentina__nappi.gitee.io/blog/css/concated.min.css" rel="stylesheet">
+  
+  <style>
+    body {
+      background: #ecedef url("https://valentina__nappi.gitee.io/blog/img/ignasi_pattern_s.png") repeat;
+    }
+  </style>
+</head>
+
+  <body class="single-body">
+    <nav class="nav-bar side-padding">
+  <h1 class="nav-header"><a href="https://valentina__nappi.gitee.io/blog" class="nav-text">咋瓦鲁多</a></h1>
+  <div class="hamburger-menu">
+    <button onclick="hamburgerMenuPressed.call(this)" aria-haspopup="true" aria-expanded="false" aria-controls="menu" aria-label="Menu">
+      <span></span>
+      <span></span>
+    </button>
+    <ul id="menu" class="hamburger-menu-overlay">
+      <li><a href="https://valentina__nappi.gitee.io/blog" class="hamburger-menu-overlay-link">Home</a></li>
+      
+      <li><a href="https://valentina__nappi.gitee.io/blog/categories/about/" class="hamburger-menu-overlay-link">about</a></li>
+      
+      <li><a href="https://valentina__nappi.gitee.io/blog/categories/html/" class="hamburger-menu-overlay-link">HTML</a></li>
+      
+      <li><a href="https://valentina__nappi.gitee.io/blog/categories/javascript/" class="hamburger-menu-overlay-link">javascript</a></li>
+      
+      
+    </ul>
+  </div>
+</nav>
+
+    <main class="content side-text-padding">
+      <article class="post dropcase">
+        <header class="post-header">
+          <h1 class="post-title">JavaScript的三种原型继承方式</h1>
+          <p class="post-date">Posted <time datetime="2020-07-25">Jul 25, 2020</time></p>
+        </header>
+        
+        <h2>Contents</h2>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#以new的方式继承">以new的方式继承</a></li>
+    <li><a href="#在子类的原型上添加__proto__属性">在子类的原型上添加__proto__属性</a></li>
+    <li><a href="#通过setprototypeof方法继承父类">通过setPrototypeOf方法继承父类</a></li>
+  </ul>
+</nav>
+        <picture>
+    
+    
+    
+        <source srcset="https://valentina__nappi.gitee.io/blog/post/javascript/js-proto-from/blackedraw-valentina-nappi_hu19efe39f232be56f81a576f48a89f667_916456_800x0_resize_q75_lanczos.jpg">
+        <img src="https://valentina__nappi.gitee.io/blog/post/javascript/js-proto-from/blackedraw-valentina-nappi_hu19efe39f232be56f81a576f48a89f667_916456_800x0_resize_q75_lanczos.jpg" >
+    
+</picture>
+<h2 id="以new的方式继承">以new的方式继承</h2>
+<p>我们可以通过在子类的原型上继承父类的方法(或称为公共属性)。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JavaScript" data-lang="JavaScript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Person</span>(<span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">age</span>) {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">name</span>
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">age</span>
+    }
+    <span style="color:#a6e22e">Person</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">setName</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">name</span>) {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">name</span>
+    }
+    <span style="color:#a6e22e">p1</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Person</span>(<span style="color:#e6db74">&#39;张学友&#39;</span>, <span style="color:#ae81ff">55</span>)
+    <span style="color:#a6e22e">p2</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Person</span>(<span style="color:#e6db74">&#39;刘德华&#39;</span>, <span style="color:#ae81ff">58</span>)
+
+    <span style="color:#75715e">// 2. 定义子类的构造函数
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Student</span>(<span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">age</span>) {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">name</span>
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">age</span>
+    }
+    <span style="color:#75715e">/*
+</span><span style="color:#75715e">      关键步骤: 让子类的原型成为Person父类的实例对象
+</span><span style="color:#75715e">      这样就可以当Student的原型上找不到对应的方法时, 可以直接找对应的构造函数(类)的原型
+</span><span style="color:#75715e">      换句话说就是实例自身找不到方法了, 都要到对应构造函数的原型上找
+</span><span style="color:#75715e">    */</span>
+    <span style="color:#a6e22e">Student</span>.<span style="color:#a6e22e">prototype</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Person</span>()
+    <span style="color:#a6e22e">Student</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">constructor</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Student</span>  <span style="color:#75715e">// 修正Student的constructor属性
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Student</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">setPrice</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">price</span>) {
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">price</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">price</span>
+    }
+    <span style="color:#a6e22e">s1</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Student</span>(<span style="color:#e6db74">&#39;马可波罗&#39;</span>, <span style="color:#ae81ff">73</span>)
+</code></pre></div><h2 id="在子类的原型上添加__proto__属性">在子类的原型上添加__proto__属性</h2>
+<p>继承父类的核心步骤就是在子类的原型上添加__proto__属性，并使得这个属性指向父类的原型。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JavaScript" data-lang="JavaScript"><span style="color:#75715e">// 人的基类
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Person</span>(<span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">age</span>) {
+      <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">new</span>.<span style="color:#a6e22e">target</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">Person</span>) {
+        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;禁止调用人的基类: new Person()&#39;</span>)
+      }
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">name</span>
+      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">age</span>
+    }
+    <span style="color:#a6e22e">Person</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">say</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> () {
+      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`大家好，我叫</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span><span style="color:#e6db74">}</span><span style="color:#e6db74">，今年已经</span><span style="color:#e6db74">${</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span><span style="color:#e6db74">}</span><span style="color:#e6db74">岁了`</span>);
+    }
+    <span style="color:#75715e">// 学生类
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Student</span>(<span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">age</span>) {
+      <span style="color:#a6e22e">Person</span>.<span style="color:#a6e22e">call</span>(<span style="color:#66d9ef">this</span>, <span style="color:#a6e22e">name</span>, <span style="color:#a6e22e">age</span>)  <span style="color:#75715e">// 继承父类的属性
+</span><span style="color:#75715e"></span>    }
+    <span style="color:#75715e">// 学生类继承人的基类
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">Student</span>.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">__proto__</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Person</span>.<span style="color:#a6e22e">prototype</span>
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s1</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Student</span>(<span style="color:#e6db74">&#39;迪奥布兰度&#39;</span>, <span style="color:#ae81ff">100</span>)
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">s1</span>.<span style="color:#a6e22e">__proto__</span>.<span style="color:#a6e22e">__proto__</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">Person</span>.<span style="color:#a6e22e">prototype</span>);  <span style="color:#75715e">// 输出: true
+</span></code></pre></div><h2 id="通过setprototypeof方法继承父类">通过setPrototypeOf方法继承父类</h2>
+<p>还是以上面继承父类(或称为基类)为例子，子类Student可以通过setPrototypeOf方法继承父类的方法</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JavaScript" data-lang="JavaScript">  Object.<span style="color:#a6e22e">setPrototypeOf</span>(<span style="color:#a6e22e">Student</span>.<span style="color:#a6e22e">prototype</span>, <span style="color:#a6e22e">Person</span>.<span style="color:#a6e22e">prototype</span>)
+  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">s1</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Student</span>(<span style="color:#e6db74">&#39;迪奥布兰度&#39;</span>, <span style="color:#ae81ff">100</span>)
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">s1</span>.<span style="color:#a6e22e">__proto__</span>.<span style="color:#a6e22e">__proto__</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">Person</span>.<span style="color:#a6e22e">prototype</span>);  <span style="color:#75715e">// 输出: true
+</span></code></pre></div>
+      </article>
+      
+    </main>
+    <nav class="end-nav side-padding">
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://valentina__nappi.gitee.io/blog/post/javascript/data-type-conversion/" class="card blog-card" rel="bookmark" >
+  
+  <article class="card-body">
+    <h2 class="card-title">JavaScript之数据类型转换</h2>
+    <p class="card-text">数据类型转换 JavaScript 中, 变量可以赋予任何类型的值。但是运算符对数据类型是有要求的, 如果运算符发现, 运算子的类型与预期不符, 就会自动转换类...</p>
+    <div class="card-subtext muted-text">
+      <p>Posted <time datetime="2020-07-24 724:00">Jul 24, 2020</time></p>
+      <p>#javascript </p>
+    </div>
+  </article>
+</a>
+      
+      <a ontouchstart="cardPressed.call(this)" ontouchend="cardReleased.call(this)" ontouchmove="cardReleased.call(this)" 
+  href="https://valentina__nappi.gitee.io/blog" class="card home-card" style="background-image: url( https://valentina__nappi.gitee.io/blog/img/grey-cloud.jpg )" rel="bookmark" >
+  Home
+</a>
+    </nav>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"
+    onload="renderMathInElement(document.body);"></script>
+  
+  <script src="https://valentina__nappi.gitee.io/blog/js/core.min.js"></script>
+
+  </body>
+</html>

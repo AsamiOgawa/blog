@@ -1,12 +1,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>HTML - </title>
-    <link>https://valentina__nappi.gitee.io/blog/categories/html/</link>
-    <description>Recent content in HTML on </description>
+    <title>Posts - </title>
+    <link>https://valentina__nappi.gitee.io/blog/post/</link>
+    <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 24 Jul 2020 11:54:58 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 25 Jul 2020 10:38:26 +0800</lastBuildDate>
     
-        <atom:link href="https://valentina__nappi.gitee.io/blog/categories/html/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://valentina__nappi.gitee.io/blog/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>HTML5新特性</title>
